@@ -1,0 +1,23 @@
+services:
+  playlist_stat_tracker:
+    container_name: playlist_stat_tracker
+    entrypoint: /usr/src/app/deployment/entrypoint.sh
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    env_file: ../.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/doc"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - playlist_stat_tracker
+    restart: unless-stopped
