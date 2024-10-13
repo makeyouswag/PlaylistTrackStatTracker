@@ -21,3 +21,5 @@ services:
     depends_on:
       - playlist_stat_tracker
     restart: unless-stopped
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
