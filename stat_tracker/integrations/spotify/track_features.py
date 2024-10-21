@@ -3,6 +3,7 @@ from pprint import pprint
 
 from stat_tracker.integrations.spotify import client
 from stat_tracker.services.containers import Track, TrackFeatures
+from stat_tracker.services.pitch_to_key import get_camelot_key
 
 
 def get_playlist_tracks(playlist_id: str) -> list[Track]:
@@ -32,6 +33,7 @@ def get_track_features(track: str) -> list[TrackFeatures]:
             track_feature["mode"],
             track_feature["tempo"],
             track_feature["danceability"],
+            get_camelot_key(track_feature["key"], track_feature["mode"]),
         )
         for track_feature in track_features
     ]

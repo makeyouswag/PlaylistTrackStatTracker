@@ -5,10 +5,11 @@ from pydantic.dataclasses import dataclass
 
 @dataclass
 class TrackFeatures:
-    key: int  # 0-11
+    pitch_class: int  # 0-11
     mode: int  # major=1 / minor=2
     tempo: float
     danceability: Optional[float]
+    camelot_key: str
 
 
 @dataclass
