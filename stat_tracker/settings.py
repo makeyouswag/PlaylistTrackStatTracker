@@ -5,7 +5,7 @@ load_dotenv()
 
 
 class Settings(BaseSettings):
-    DEBUG: bool = False
+    DEBUG: bool = True
     TESTING: bool = False
     SPOTIFY_CLIENT_ID: str
     SPOTIFY_CLIENT_SECRET: str
