@@ -22,7 +22,7 @@ def get_playlist_tracks(playlist_id: str) -> list[Track]:
     ]
 
 
-def get_track_features(track: str) -> list[TrackFeatures]:
+def get_track_features(track: str) -> TrackFeatures:
     """
     Get track features from Spotify
     """
@@ -31,12 +31,12 @@ def get_track_features(track: str) -> list[TrackFeatures]:
         TrackFeatures(
             track_feature["key"],
             track_feature["mode"],
+            get_camelot_key(track_feature["key"], track_feature["mode"]),
             track_feature["tempo"],
             track_feature["danceability"],
-            get_camelot_key(track_feature["key"], track_feature["mode"]),
         )
         for track_feature in track_features
-    ]
+    ][0]
 
 
 if __name__ == "__main__":
