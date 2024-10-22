@@ -1,7 +1,5 @@
-import io
-
 from fastapi import APIRouter, Query
-from starlette.responses import FileResponse, StreamingResponse
+from starlette.responses import StreamingResponse
 
 from stat_tracker.api.spotify.schemas import CamelotKey
 from stat_tracker.integrations.spotify.track_features import get_playlist_tracks
@@ -26,7 +24,7 @@ def get_track_table(playlist_id: str) -> StreamingResponse:
 def get_chosen_tune_track_table(
     tune: CamelotKey,
     playlist_ids: list[str] = Query(
-        None, description="Playlist ids to include in the search"
+        [], description="Playlist ids to include in the search"
     ),
 ):
     tracks = [
