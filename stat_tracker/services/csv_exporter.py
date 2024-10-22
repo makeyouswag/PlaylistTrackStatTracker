@@ -24,9 +24,11 @@ def write_track_table(tracks: list[Track], path: str | os.PathLike | pathlib.Pat
     create_track_table(tracks).to_csv(path)
 
 
-def get_track_table_buffer(tracks: list[Track]):
+def get_track_table_buffer(tracks: list[Track]) -> io.BytesIO:
     buffer = io.BytesIO()
-    return create_track_table(tracks).to_csv(buffer)
+    create_track_table(tracks).to_csv(buffer)
+    buffer.seek(0)
+    return buffer
 
 
 if __name__ == "__main__":
