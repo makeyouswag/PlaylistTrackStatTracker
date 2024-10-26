@@ -14,8 +14,8 @@ def get_playlist_tracks(playlist_id: str) -> list[Track]:
     return [
         Track(
             item["track"]["id"],
-            item["track"]["name"],
             [artist["name"] for artist in item["track"]["artists"]],
+            item["track"]["name"],
             get_track_features(item["track"]["id"]),
         )
         for item in response["items"]
@@ -29,10 +29,10 @@ def get_track_features(track: str) -> TrackFeatures:
     track_features = client.audio_features(track)
     return [
         TrackFeatures(
-            track_feature["key"],
-            track_feature["mode"],
             get_camelot_key(track_feature["key"], track_feature["mode"]),
             track_feature["tempo"],
+            track_feature["key"],
+            track_feature["mode"],
             track_feature["danceability"],
         )
         for track_feature in track_features
